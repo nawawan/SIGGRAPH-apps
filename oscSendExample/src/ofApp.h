@@ -8,7 +8,7 @@
 using namespace Leap;
 
 class LeapListener : public Listener {
-  public:
+public:
     virtual void onInit(const Controller&);
     virtual void onConnect(const Controller&);
     virtual void onDisconnect(const Controller&);
@@ -20,7 +20,7 @@ class LeapListener : public Listener {
     virtual void onServiceConnect(const Controller&);
     virtual void onServiceDisconnect(const Controller&);
 
-  private:
+private:
 };
 
 

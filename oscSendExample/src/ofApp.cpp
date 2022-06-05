@@ -4,11 +4,13 @@
 void ofApp::setup(){
     ofBackground(0, 0, 0);
     sender.setup(HOST, PORT);
+    controller.addListener(listener);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    const Frame frame = controller.frame();
+    const GestureList gestures = frame.gestures();
 }
 
 //--------------------------------------------------------------
@@ -114,13 +116,13 @@ void LeapListener::onExit(const Controller& controller) {
 void LeapListener::onFrame(const Controller& controller) {
   // Get the most recent frame and report some basic information
   const Frame frame = controller.frame();
-  std::cout << "Frame id: " << frame.id()
+  /*std::cout << "Frame id: " << frame.id()
             << ", timestamp: " << frame.timestamp()
             << ", hands: " << frame.hands().count()
             << ", extended fingers: " << frame.fingers().extended().count()
             << ", tools: " << frame.tools().count()
-            << ", gestures: " << frame.gestures().count() << std::endl;
-
+            << ", gestures: " << frame.gestures().count() << std::endl;*/
+/* We use only the gestures
   HandList hands = frame.hands();
   for (HandList::const_iterator hl = hands.begin(); hl != hands.end(); ++hl) {
     // Get the first hand
@@ -163,7 +165,6 @@ void LeapListener::onFrame(const Controller& controller) {
       }
     }
   }
-
   // Get tools
   const ToolList tools = frame.tools();
   for (ToolList::const_iterator tl = tools.begin(); tl != tools.end(); ++tl) {
@@ -171,7 +172,7 @@ void LeapListener::onFrame(const Controller& controller) {
     std::cout << std::string(2, ' ') <<  "Tool, id: " << tool.id()
               << ", position: " << tool.tipPosition()
               << ", direction: " << tool.direction() << std::endl;
-  }
+  }*/
 
   // Get gestures
   const GestureList gestures = frame.gestures();
@@ -242,7 +243,7 @@ void LeapListener::onFrame(const Controller& controller) {
   }
 
   if (!frame.hands().isEmpty() || !gestures.isEmpty()) {
-    std::cout << std::endl;
+    //std::cout << std::endl;
   }
 
 }
