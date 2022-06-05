@@ -2,8 +2,27 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
+#include "Leap.h"
 #define HOST "localhost"
 #define PORT 8000
+using namespace Leap;
+
+class LeapListener : public Listener {
+public:
+    virtual void onInit(const Controller&);
+    virtual void onConnect(const Controller&);
+    virtual void onDisconnect(const Controller&);
+    virtual void onExit(const Controller&);
+    virtual void onFrame(const Controller&);
+    virtual void onFocusGained(const Controller&);
+    virtual void onFocusLost(const Controller&);
+    virtual void onDeviceChange(const Controller&);
+    virtual void onServiceConnect(const Controller&);
+    virtual void onServiceDisconnect(const Controller&);
+
+private:
+};
+
 
 class ofApp : public ofBaseApp{
 
@@ -25,4 +44,6 @@ public:
     void gotMessage(ofMessage msg);
 private:
     ofxOscSender sender;
+    LeapListener listener;
+    Controller controller;
 };
