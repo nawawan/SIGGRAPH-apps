@@ -7,10 +7,13 @@ void ofApp::setup(){
     remoteMouseY = 0;
     mouseButtonState = "";
     ofBackground(0, 0, 0);
+    video.load("card.mov");
+    video.play();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    video.update();
     while(receiver.hasWaitingMessages()){
         ofxOscMessage m;
         receiver.getNextMessage(m);
@@ -39,13 +42,14 @@ void ofApp::dumpOSC(ofxOscMessage m){
 //--------------------------------------------------------------
 void ofApp::draw(){
     int radius = 0;
+    video.draw(20, 20);
     if(mouseButtonState == "down"){
         radius = 20;
         ofSetColor(255, 127, 0);
     }
     else{
         radius = 10;
-        ofSetColor(0, 127, 255);
+        //ofSetColor(0, 127, 255);
     }
     ofDrawCircle(remoteMouseX, remoteMouseY, radius);
 }

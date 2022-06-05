@@ -26,5 +26,6 @@ public:
 private:
     ofxOscReceiver receiver;
     int remoteMouseX, remoteMouseY;
+    ofVideoPlayer video;
     string mouseButtonState;
 };
